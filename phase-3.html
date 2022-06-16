@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS</title>
+  <meta name="description" content="This book contains contains information and materials for a single-day workshop on ‘Writing a Reproducible Paper in R with WORCS’." />
+  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="This book contains contains information and materials for a single-day workshop on ‘Writing a Reproducible Paper in R with WORCS’." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS" />
+  
+  <meta name="twitter:description" content="This book contains contains information and materials for a single-day workshop on ‘Writing a Reproducible Paper in R with WORCS’." />
+  
+
+<meta name="author" content="Caspar van Lissa, Neha Moopen, Bianca Kramer" />
+
+
+<meta name="date" content="2022-06-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="phase-2.html"/>
+<link rel="next" href="references.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Writing A Reproducible Manuscript With WORCS</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome!</a></li>
+<li class="chapter" data-level="" data-path="installation-troubleshooting.html"><a href="installation-troubleshooting.html"><i class="fa fa-check"></i>Installation &amp; Troubleshooting</a>
+<ul>
+<li class="chapter" data-level="" data-path="installation-troubleshooting.html"><a href="installation-troubleshooting.html#setup"><i class="fa fa-check"></i>Setup</a></li>
+<li class="chapter" data-level="" data-path="installation-troubleshooting.html"><a href="installation-troubleshooting.html#test"><i class="fa fa-check"></i>Test!</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i>Introduction to WORCS</a></li>
+<li class="chapter" data-level="" data-path="phase-1.html"><a href="phase-1.html"><i class="fa fa-check"></i>Phase 1: Study Design</a></li>
+<li class="chapter" data-level="" data-path="phase-2.html"><a href="phase-2.html"><i class="fa fa-check"></i>Phase 2: Writing &amp; Analysis</a></li>
+<li class="chapter" data-level="" data-path="phase-3.html"><a href="phase-3.html"><i class="fa fa-check"></i>Phase 3: Submission &amp; Publication</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Writing A Reproducible Manuscript In R With WORCS</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="phase-3" class="section level1 hasAnchor">
+<h1>Phase 3: Submission &amp; Publication<a href="phase-3.html#phase-3" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<ol start="12" style="list-style-type: decimal">
+<li><!--S: Use dependency management to make the computational environment fully reproducible-->
+Use dependency management to make the computational environment fully reproducible. When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code>renv::snapshot()</code>. This updates the lockfile, <code>renv.lock</code>.</li>
+<li><!--S: Optional: Add a WORCS-badge to your project's README file-->
+Optional: Add a WORCS-badge to your project’s README file and complete the optional elements of the WORCS checklist to qualify for a “Perfect” rating. Run the <code>check_worcs()</code> function to see whether your project adheres to the WORCS checklist (see <code>worcs::checklist</code>)
+<ul>
+<li>This adds a WORCS-badge to your ‘README.md’ file, with a rank of “Fail”, “Limited”, or “Open”.</li>
+<li>Reference the WORCS checklist and your paper’s score in the paper.</li>
+<li><em>Optional:</em> Complete the additional optional items in the WORCS checklist by hand, and get a “Perfect” rating.</li>
+</ul></li>
+<li><!--S: Make a Private 'Git' remote repository Public-->
+Make the ‘Git’ remote repository “Public” if it was set to “Private”
+<ul>
+<li>Instructions for ‘GitHub’:
+<ul>
+<li>Go to your project’s repository</li>
+<li>Click the “Settings” button</li>
+<li>Scroll to the bottom of the page; click “Make public”, and follow the on-screen instructions</li>
+</ul></li>
+</ul></li>
+<li><!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
+<a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">connect it to the ‘Git’ remote repository</a>.
+<ul>
+<li>On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.</li>
+</ul></li>
+<li><!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
+<a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs">Generate a Digital Object Identifier (DOI) for the OSF project</a>
+<ul>
+<li>A DOI is a persistent identifier that can be used to link to your project page.</li>
+<li>You may have already created a project page under Step 5 if you preregistered on the OSF</li>
+<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">generate additional DOIs for specific resources like datasets</a>.</li>
+<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
+</ul></li>
+<li><!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->
+Add an open science statement to the Abstract or Author notes, which links to the ‘OSF’ project page and/or the ‘Git’ remote repository.
+<ul>
+<li>Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.</li>
+<li>The link can be masked for blind review.</li>
+<li>The open science statement should indicate which resources are available in the online repository; data, code, materials, study design details, a pre-registration, and/or comprehensive citations. For further guidance, see <span class="citation">(<a href="#ref-aalbersbergMakingScienceTransparent2018" role="doc-biblioref"><strong>aalbersbergMakingScienceTransparent2018?</strong></a>)</span>. Example:<br />
+<em>In the spirit of open science, an online repository is available at XXX,
+which contains [the data/a synthetic data file], analysis code, the research
+materials used, details about the study design, more comprehensive citations,
+and a tagged release with the preregistration.</em></li>
+</ul></li>
+<li><!--S: Render the dynamic document to PDF-->
+Knit the paper to PDF for submission
+<ul>
+<li>In ‘RStudio’, with the file ‘manuscript.Rmd’ open, click the “Knit” button above the top left panel</li>
+<li>To retain essential citations only, change the front matter of the ‘manuscript.Rmd’ file:<br />
+Change <code>knit: worcs::cite_all</code> to <code>knit: worcs::cite_essential</code></li>
+</ul></li>
+<li><!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->
+Optional: <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint">Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project</a>
+<ul>
+<li>Check <a href="http://sherpa.ac.uk/romeo/index.php">Sherpa Romeo</a> to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.</li>
+</ul></li>
+<li><!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->
+Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag the commit of the submitted paper as a release</a>, as in Step 4.</li>
+</ol>
+
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="phase-2.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["worcshop-book.pdf", "worcshop-book.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
