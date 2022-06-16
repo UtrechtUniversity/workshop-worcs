@@ -7,7 +7,7 @@ documentclass: book
 bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
-description: "This book contains contains information and materials for a single-day workshop on 'Writing a Reproducible Paper in R with WORCS'. 
+description: "This book contains contains information and materials for a single-day workshop on 'Writing a Reproducible Paper in R with WORCS'." 
 ---
 
 # Welcome!
