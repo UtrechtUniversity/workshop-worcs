@@ -1,7 +1,7 @@
 --- 
 title: "Writing A Reproducible Manuscript In R With WORCS"
 author: "Caspar van Lissa, Neha Moopen, Bianca Kramer"
-date: "`r Sys.Date()`"
+date: "2022-06-22"
 site: bookdown::bookdown_site
 output: bookdown::bs4_book
 url: https://nehamoopen.github.io/worcshop-book

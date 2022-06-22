@@ -6,8 +6,8 @@ This is a tutorial on how to set up your personal computer for use with the `wor
 
 Follow these steps in order:
 
-1.  Install R from <https://CRAN.R-project.org>
-2.  Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)
+1.  Install R from <https://CRAN.R-project.org>\
+2.  Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)\
 3.  Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
     -   Git from the command line and also from third party software\
         <!--*The `worcs` R-package calls Git from the command line*-->
@@ -17,9 +17,9 @@ Follow these steps in order:
         <!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
     -   Enable Git Credential Manager\
         <!--*For logging in to GitHub*-->
-    -   If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).
+    -   If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).\
 4.  Register on 'GitHub' (alternatively: see [this vignette](https://cjvanlissa.github.io/worcs/articles/git_cloud.html) on how to use 'GitLab' or 'Bitbucket')
-    -   Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan. <!-- + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published. -->
+    -   Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan. <!-- + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published. -->\
 5.  Connect 'RStudio' to Git and GitHub (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
     a.  Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
     b.  Verify that *Enable version control interface for RStudio projects* is selected
@@ -30,7 +30,7 @@ Follow these steps in order:
     g.  Go to [github.com](https://github.com/)
     h.  Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
     i.  Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
-    j.  Open 'RStudio' again (unless it restarted by itself)
+    j.  Open 'RStudio' again (unless it restarted by itself)\
 6.  Install all packages required for WORCS by running the following code in the 'RStudio' console. Be prepared for three contingencies:
     -   If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`\
     -   If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.\
@@ -55,11 +55,11 @@ Because `papaja` has many dependencies, it is recommended to skip this step if y
 
 That's it! Everything should be installed and connected now.
 
-## Test!
+## Test
 
-If you've set up your SSH keys alright, we can try going ahead and seeing whether you can *push* and *pull* from GitHub successfully. If you're going the HTTPS route due to issues, no worries! Just make sure your switch out the SSH clone URL for the HTTPS clone URL.
+To check if the installation and setup was successful, we can try going ahead and seeing whether you can *push* and *pull* from GitHub without issue.
 
-This is something we'll do during the workshop as well, but trying it out beforehand reduces chances of errors while the course is ongoing.
+This is something we'll do during the workshop as well, but trying it out beforehand allows us to troubleshoot errors .
 
 The sequence of steps is as follows:
 
@@ -99,7 +99,8 @@ The sequence of steps is as follows:
 
 Go to your terminal and type the following command, substituting the SSH clone URL you copied in the previous step after `git clone`:
 
-```{r eval=FALSE}
+
+```r
 git clone git@github.com:username/testrepo.git
 ```
 
@@ -113,19 +114,22 @@ Navigate to the folder of your repository and open the README file. Make an edit
 
 Go to your terminal and type the following command(s):
 
-```{r eval=FALSE}
+
+```r
 git add .
 ```
 
 This adds all changed files to a 'staging area'.
 
-```{r eval=FALSE}
+
+```r
 git commit -m "insert-understandable-message-here"
 ```
 
 Now you're officially 'committing' the changes you made. You want to add a understandable commit message so you have a clear record of your changes.
 
-```{r eval=FALSE}
+
+```r
 git push
 ```
 
@@ -149,7 +153,8 @@ Now we want to go the other way around, open your README file on GitHub and make
 
 Now go to your terminal and type the following command:
 
-```{r eval=FALSE}
+
+```r
 git pull
 ```
 

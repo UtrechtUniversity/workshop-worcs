@@ -1,0 +1,15 @@
+welcome
+installation-troubleshooting
+setup
+test
+create-a-test-repository-on-github
+clone-the-test-repository
+make-local-changes
+push-the-local-changes-to-github
+make-changes-online
+pull-from-github
+wrap-up
+intro
+phase-1
+phase-2
+phase-3

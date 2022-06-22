@@ -1,0 +1,10 @@
+# The WORCS Workflow {-}
+
+The WORCS workflow constitutes a step-by-step procedure that researchers can follow to make a research project open and reproducible. The following flowchart that highlights important steps in different stages of the research process, while the steps are elaborated in the next chapters.
+
+![WORCS workflow](https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png)
+[Link to the flowchart](https://github.com/cjvanlissa/worcs/raw/master/paper/workflow_graph/workflow.png)
+
+The following tutorial provides a walkthrough of the WORCS workflow:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/uzjpN_yFeUU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

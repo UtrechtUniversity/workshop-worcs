@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Phase 2: Writing &amp; Analysis | Writing A Reproducible Manuscript In R With WORCS</title>
+<meta name="author" content="Caspar van Lissa, Neha Moopen, Bianca Kramer">
+<meta name="description" content="Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable Document this preprocessing (“data wrangling”)...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Phase 2: Writing &amp; Analysis | Writing A Reproducible Manuscript In R With WORCS">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://nehamoopen.github.io/worcshop-book/phase-2-writing-analysis.html">
+<meta property="og:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<meta property="og:description" content="Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable Document this preprocessing (“data wrangling”)...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phase 2: Writing &amp; Analysis | Writing A Reproducible Manuscript In R With WORCS">
+<meta name="twitter:description" content="Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable Document this preprocessing (“data wrangling”)...">
+<meta name="twitter:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Writing A Reproducible Manuscript In R With WORCS</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="installation-setup.html">Installation &amp; Setup</a></li>
+<li><a class="" href="data-materials.html">Data &amp; Materials</a></li>
+<li><a class="" href="introduction-to-worcs.html">Introduction to WORCS</a></li>
+<li><a class="" href="the-worcs-workflow.html">The WORCS Workflow</a></li>
+<li><a class="" href="phase-1-study-design.html">Phase 1: Study Design</a></li>
+<li><a class="active" href="phase-2-writing-analysis.html">Phase 2: Writing &amp; Analysis</a></li>
+<li><a class="" href="phase-3-submission-publication.html">Phase 3: Submission &amp; Publication</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/nehamoopen/worcshop-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="phase-2-writing-analysis" class="section level1 unnumbered">
+<h1>Phase 2: Writing &amp; Analysis<a class="anchor" aria-label="anchor" href="#phase-2-writing-analysis"><i class="fas fa-link"></i></a>
+</h1>
+<ol start="8" style="list-style-type: decimal">
+<li>
+<!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->
+<strong>Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable</strong>
+<ul>
+<li>Document this preprocessing (“data wrangling”) procedure in the <code>prepare_data.R</code> file.</li>
+<li>This file is intended to document steps that can not or should not be replicated by end users, unless they have access to the raw data file.</li>
+<li>These are steps you would run only once, the first time you load data into R.</li>
+<li>Make this file as short as possible; only include steps that are absolutely necessary</li>
+</ul>
+</li>
+<li>
+<!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->
+<strong>Save the data using <code>open_data()</code> or <code>closed_data()</code></strong>
+<ul>
+<li><font colour="red"><strong>WARNING:</strong> Once you commit a data file to the ‘Git’ repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a ‘Git’ remote repository cannot be undone. Follow the mantra: “Never commit something you do not intend to share”.</font></li>
+<li>When using external data sources (e.g., obtained using an API), it is recommended to store a local copy, to make the project portable and to ensure that end users have access to the same version of the data you used.</li>
+<li>NOTE: The <code>open_data()</code> and <code>closed_data()</code> functions generate a codebook and possibly additional files as part of their output, don’t worry about all the new files added to your project.</li>
+</ul>
+</li>
+<li>
+<!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->
+<strong>Write the manuscript in <code>Manuscript.Rmd</code></strong>
+<ul>
+<li>Use code chunks to perform the analyses. The first code chunk should call <code>load_data()</code>
+</li>
+<li>Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.</li>
+</ul>
+</li>
+<li>
+<!--S: Commit every small change to the 'Git' repository-->
+<strong>Regularly Commit your progress to the Git repository; ideally, after completing each small and clearly defined task.</strong>
+<ul>
+<li>In the top-right panel of ‘RStudio’, select the ‘Git’ tab</li>
+<li>Select the checkboxes next to all files whose changes you wish to Commit</li>
+<li>Click the Commit button.</li>
+<li>In the pop-up window, write an informative “Commit message”.</li>
+<li>Click the Commit button below the message dialog</li>
+<li>Click the green arrow labeled “Push” to send your commit to the remote repository</li>
+</ul>
+</li>
+<li>
+<!--S: Use comprehensive citation-->
+<strong>While writing, cite essential references with one at-symbol, <code>[@essentialref2020]</code>, and non-essential references with a double at-symbol, <code>[@@nonessential2020]</code>.</strong>
+</li>
+</ol>
+<p>When writing in <code>RMarkdown</code> format, you use Markdown <code>citekey</code>s to refer to references, and these references will be stored in a separate text file known as a <code>.bib</code> file.</p>
+<p>To ease this process, we recommend following this procedure for citation:</p>
+<ol style="list-style-type: lower-alpha">
+<li><p>During writing, maintain a plain-text <code>.bib</code> file with the BibTeX references
+for all citations.
++ You can export a <code>.bib</code> file from most reference manager
+programs; the free, open-source reference manager
+<a href="https://www.zotero.org/download/">Zotero</a> is excellent and user-friendly,
+and highly interoperable with other commercial reference managers. <a href="https://christopherjunk.netlify.com/blog/2019/02/25/zotero-RMarkdown/">Here</a> is a tutorial for using Zotero with RMarkdown.
++ Alternatively, it is possible to make this file by hand, copy and pasting
+each new reference below
+the previous one; e.g., Figure <a href="#fig:scholarbib"><strong>??</strong></a> shows how to obtain a
+BibTeX reference from Google Scholar; simply copy-paste each reference into
+the <code>.bib</code> file</p></li>
+<li><p>To cite a reference, use the <code>citekey</code> - the first word in the BibTeX entry
+for that reference. Insert it in the RMarkdown file like so: <code>@yourcitekey2020</code>.
+For a parenthesized reference, use <code>[@citekeyone2020; @citekeytwo2020]</code>. For
+more options, see the <a href="https://bookdown.org/yihui/rmarkdown-cookbook/bibliography.html">RMarkdown cookbook</a>.</p></li>
+<li><p>To indicate a <em>non-essential</em> citation, mark it with a double at-symbol: <code>@@nonessential2020</code>.</p></li>
+<li><p>When Knitting the document, adapt the <code>knit</code> command in the YAML header.<br><code>knit: worcs::cite_all</code> renders all citations, and<br><code>knit: worcs::cite_essential</code> removes all <em>non-essential</em> citations.</p></li>
+<li><p>Optional: To be extremely thorough, you could make a “branch” of the GitHub repository for the print version of the manuscript. Only in this branch, you use the function <code>knit: worcs::cite_essential</code>. The procedure is documented in <a href="http://rstudio-pubs-static.s3.amazonaws.com/142364_3b344a38149b465c8ebc9a8cd2eee3aa.html">this tutorial</a>.</p></li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="phase-1-study-design.html">Phase 1: Study Design</a></div>
+<div class="next"><a href="phase-3-submission-publication.html">Phase 3: Submission &amp; Publication</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#phase-2-writing-analysis">Phase 2: Writing &amp; Analysis</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/nehamoopen/worcshop-book/blob/main/06-phase-2.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/nehamoopen/worcshop-book/edit/main/06-phase-2.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Writing A Reproducible Manuscript In R With WORCS</strong>" was written by Caspar van Lissa, Neha Moopen, Bianca Kramer. It was last built on 2022-06-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

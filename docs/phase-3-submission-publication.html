@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS</title>
+<meta name="author" content="Caspar van Lissa, Neha Moopen, Bianca Kramer">
+<meta name="description" content="Use dependency management to make the computational environment fully reproducible. When using renv, you can save the state of the project library (all packages used) by calling renv::snapshot()....">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://nehamoopen.github.io/worcshop-book/phase-3-submission-publication.html">
+<meta property="og:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<meta property="og:description" content="Use dependency management to make the computational environment fully reproducible. When using renv, you can save the state of the project library (all packages used) by calling renv::snapshot()....">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phase 3: Submission &amp; Publication | Writing A Reproducible Manuscript In R With WORCS">
+<meta name="twitter:description" content="Use dependency management to make the computational environment fully reproducible. When using renv, you can save the state of the project library (all packages used) by calling renv::snapshot()....">
+<meta name="twitter:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Writing A Reproducible Manuscript In R With WORCS</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="installation-setup.html">Installation &amp; Setup</a></li>
+<li><a class="" href="data-materials.html">Data &amp; Materials</a></li>
+<li><a class="" href="introduction-to-worcs.html">Introduction to WORCS</a></li>
+<li><a class="" href="the-worcs-workflow.html">The WORCS Workflow</a></li>
+<li><a class="" href="phase-1-study-design.html">Phase 1: Study Design</a></li>
+<li><a class="" href="phase-2-writing-analysis.html">Phase 2: Writing &amp; Analysis</a></li>
+<li><a class="active" href="phase-3-submission-publication.html">Phase 3: Submission &amp; Publication</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/nehamoopen/worcshop-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="phase-3-submission-publication" class="section level1 unnumbered">
+<h1>Phase 3: Submission &amp; Publication<a class="anchor" aria-label="anchor" href="#phase-3-submission-publication"><i class="fas fa-link"></i></a>
+</h1>
+<ol start="13" style="list-style-type: decimal">
+<li>
+<!--S: Use dependency management to make the computational environment fully reproducible-->
+<p><strong>Use dependency management to make the computational environment fully reproducible.</strong> When using <code>renv</code>, you can save the state of the project library (all packages used) by calling <code><a href="https://rstudio.github.io/renv/reference/snapshot.html">renv::snapshot()</a></code>. This updates the lockfile, <code>renv.lock</code>.</p>
+</li>
+<li>
+<!--S: Optional: Add a WORCS-badge to your project's README file-->
+<p><strong>Optional:</strong> Add a WORCS-badge to your project’s README file and complete the optional elements of the WORCS checklist to qualify for a “Perfect” rating. Run the <code>check_worcs()</code> function to see whether your project adheres to the WORCS checklist (see <code>worcs::checklist</code>)</p>
+<ul>
+<li>This adds a WORCS-badge to your ‘README.md’ file, with a rank of “Fail”, “Limited”, or “Open”.</li>
+<li>Reference the WORCS checklist and your paper’s score in the paper.</li>
+<li>
+<strong>Optional:</strong> Complete the additional optional items in the WORCS checklist by hand, and get a “Perfect” rating.</li>
+</ul>
+</li>
+<li>
+<!--S: Make a Private 'Git' remote repository Public-->
+<p><strong>Make the ‘Git’ remote repository “Public” if it was set to “Private”</strong></p>
+<ul>
+<li>Instructions for ‘GitHub’:
+<ul>
+<li>Go to your project’s repository</li>
+<li>Click the “Settings” button</li>
+<li>Scroll to the bottom of the page; click “Make public”, and follow the on-screen instructions</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
+<p><strong><a href="https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project">Create a project on the Open Science Framework (OSF)</a> and <a href="https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project">connect it to the ‘Git’ remote repository</a>.</strong></p>
+<ul>
+<li>On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.</li>
+</ul>
+</li>
+<li>
+<!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
+<p><strong><a href="https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs">Generate a Digital Object Identifier (DOI) for the OSF project</a></strong></p>
+<ul>
+<li>A DOI is a persistent identifier that can be used to link to your project page.</li>
+<li>You may have already created a project page under Step 5 if you preregistered on the OSF</li>
+<li>Optionally, you can <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">generate additional DOIs for specific resources like datasets</a>.</li>
+<li>Alternatively, you can <a href="https://guides.github.com/activities/citable-code/">connect your ‘Git’ remote repository to Zenodo</a>, instead of the OSF, to create DOIs for the project and specific resources.</li>
+</ul>
+</li>
+<li>
+<!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->
+<p><strong>Add an open science statement to the Abstract or Author notes, which links to the ‘OSF’ project page and/or the ‘Git’ remote repository.</strong></p>
+<ul>
+<li>Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.</li>
+<li>The link can be masked for blind review.</li>
+<li>The open science statement should indicate which resources are available in the online repository; data, code, materials, study design details, a pre-registration, and/or comprehensive citations. For further guidance, see <span class="citation">@aalbersbergMakingScienceTransparent2018</span>. Example:<br><em>In the spirit of open science, an online repository is available at XXX,
+which contains [the data/a synthetic data file], analysis code, the research
+materials used, details about the study design, more comprehensive citations,
+and a tagged release with the preregistration.</em>
+</li>
+</ul>
+</li>
+<li>
+<!--S: Render the dynamic document to PDF-->
+<p><strong>Knit the paper to PDF for submission</strong></p>
+<ul>
+<li>In ‘RStudio’, with the file ‘manuscript.Rmd’ open, click the “Knit” button above the top left panel</li>
+<li>To retain essential citations only, change the front matter of the ‘manuscript.Rmd’ file:<br>
+Change <code>knit: worcs::cite_all</code> to <code>knit: worcs::cite_essential</code>
+</li>
+</ul>
+</li>
+<li>
+<!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->
+<p><strong>Optional:</strong> <a href="https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint">Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project</a></p>
+<ul>
+<li>Check <a href="http://sherpa.ac.uk/romeo/index.php">Sherpa Romeo</a> to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.</li>
+</ul>
+</li>
+<li>
+<!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->
+<p><strong>Submit the paper, and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag the commit of the submitted paper as a release</a>, as in Step 4.</strong></p>
+</li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="phase-2-writing-analysis.html">Phase 2: Writing &amp; Analysis</a></div>
+<div class="next"><a href="references.html">References</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#phase-3-submission-publication">Phase 3: Submission &amp; Publication</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/nehamoopen/worcshop-book/blob/main/07-phase-3.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/nehamoopen/worcshop-book/edit/main/07-phase-3.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Writing A Reproducible Manuscript In R With WORCS</strong>" was written by Caspar van Lissa, Neha Moopen, Bianca Kramer. It was last built on 2022-06-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>

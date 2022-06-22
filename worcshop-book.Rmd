@@ -1,0 +1,301 @@
+--- 
+title: "Writing A Reproducible Manuscript In R With WORCS"
+author: "Caspar van Lissa, Neha Moopen, Bianca Kramer"
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "This book contains contains information and materials for a single-day workshop on 'Writing a Reproducible Paper in R with WORCS'." 
+---
+
+# Welcome!
+
+Open Science is becoming increasingly popular and relevant, and a world of opportunity is opening up to make your work fully reproducible. This is not without its challenges: best practices for reproducible science include a number of tools that you may never have used or even heard of before: _Are you using version control? How are you managing your dependencies? Are you writing your manuscript as an executable document?_
+
+For those who would like to get started with an open and reproducible workflow, without dealing with a mountain of new tools and platforms, we introduce WORCS, a _Workflow for Open Reproducible Code in Science_. The workflow is written for R, but you do not need to have prior programming experience to join this workshop. Having the motivation to step out of your comfort zone — and into a new one — is the most important prerequisite.
+
+WORCS is an R package that takes you from data to published paper in a single streamlined workflow, making the entire process of your analysis, up to the submission of your manuscript, reproducible. The WORCS workflow optionally facilitates pre-registration, sharing your code and your data (safely!), and the submission of a pre-print.
+
+This workshop will give you an overview of the workflow and introduce you to its use. You will create your first reproducible project by going through all steps of the workflow yourself.
+
+<!--chapter:end:index.Rmd-->
+
+# Installation & Troubleshooting
+
+## Setup
+
+This is a tutorial on how to set up your personal computer for use with the `worcs` package. It guides you through the installation of several software packages, and registration on GitHub. This vignette does not assume a prior installation of `R`, so it is suitable for novice users. You only have to perform these steps once for every computer you intend to use `R` and `worcs` on, and the entire process should take approximately 30 minutes if you start from scratch. In case some of the software is already installed on your system, you can skip those related steps.
+
+Follow these steps in order:
+
+1.  Install R from <https://CRAN.R-project.org>\
+2.  Install 'RStudio' Desktop (Free) from [rstudio.com](https://rstudio.com/products/rstudio/download/#download)\
+3.  Install Git from [git-scm.com](https://git-scm.com/downloads). Use the default, recommended settings. It is especially important to leave these settings selected:
+    -   Git from the command line and also from third party software\
+        <!--*The `worcs` R-package calls Git from the command line*-->
+    -   Use the 'OpenSSL' library\
+        <!--*For secure data transfer with GitHub*-->
+    -   Checkout Windows-style, commit Unix-style line endings\
+        <!--*This is the preferred setting when collaborating with others on different platforms. Be prepared that, on windows, you will receive harmless notifications about LF to CRLF line endings.  *-->
+    -   Enable Git Credential Manager\
+        <!--*For logging in to GitHub*-->
+    -   If you run into any trouble, a more comprehensive tutorial on installing Git is available at [happygitwithr.com](https://happygitwithr.com/install-git.html).\
+4.  Register on 'GitHub' (alternatively: see [this vignette](https://cjvanlissa.github.io/worcs/articles/git_cloud.html) on how to use 'GitLab' or 'Bitbucket')
+    -   Go to [github.com](https://github.com/) and click *Sign up*. Choose an "Individual", "Free" plan. <!-- + Request a [free academic upgrade](https://help.github.com/en/articles/applying-for-an-educator-or-researcher-discount). This allows you to create *private repositories*, which are only visible to you and selected collaborators, and can be made public when your work is published. -->\
+5.  Connect 'RStudio' to Git and GitHub (for more support, see [this 'RStudio' article](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN), and [this blog post](https://www.r-bloggers.com/2015/07/rstudio-and-github/))
+    a.  Open 'RStudio', open the Tools menu, click *Global Options*, and click *Git/SVN*
+    b.  Verify that *Enable version control interface for RStudio projects* is selected
+    c.  Verify that *Git executable:* shows the location of git.exe. If it is missing, manually fix the location of the file.
+    d.  Click *Create RSA Key*. Do not enter a passphrase. Press *Create*. A window with some information will open, which you can close.
+    e.  Click *View public key*, and copy the entire text to the clipboard.
+    f.  Close 'RStudio' (it might offer to restart by itself; this is fine)
+    g.  Go to [github.com](https://github.com/)
+    h.  Click your user icon, click *Settings*, and then select the *SSH and GPG keys* tab.
+    i.  Click *New SSH key*. Give it an arbitrary name (e.g., your computer ID), and paste the public key from your clipboard into the box labeled *Key*.
+    j.  Open 'RStudio' again (unless it restarted by itself)\
+6.  Install all packages required for WORCS by running the following code in the 'RStudio' console. Be prepared for three contingencies:
+    -   If you receive any error saying *There is no package called [package name]*, then run the code `install.packages("package name")`\
+    -   If you are prompted to update packages, just press [ENTER] to avoid updating packages. Updating packages this way in an interactive session sometimes leads to errors if the packages are loaded.\
+    -   If you see a pop-up dialog asking *Do you want to install from sources the package which needs compilation?*, click *No*.
+
+```{=html}
+<!-- -->
+```
+    install.packages("worcs", dependencies = TRUE)
+    tinytex::install_tinytex()
+    renv::consent(provided = TRUE)
+
+If you do not have a Git user set up on your computer yet (e.g., if this is the first time you will be using Git), run the following - making sure to substitute your actual username and email:
+
+    worcs::git_user("your_name", "your_email", overwrite = TRUE)
+
+If you intend to write documents in APA style, you should additionally install the `papaja` package. Unfortunately, this package is not yet available on the central R repository CRAN, but you can install it from 'GitHub' using the following code:
+
+    remotes::install_github("crsh/papaja", dependencies = TRUE, update = "never")
+
+Because `papaja` has many dependencies, it is recommended to skip this step if you intend to write documents in a different style than APA.
+
+That's it! Everything should be installed and connected now.
+
+## Test
+
+To check if the installation and setup was successful, we can try going ahead and seeing whether you can *push* and *pull* from GitHub without issue.
+
+This is something we'll do during the workshop as well, but trying it out beforehand allows us to troubleshoot errors .
+
+The sequence of steps is as follows:
+
+1.  Create a test repository on GitHub.
+
+2.  Clone the test repository.
+
+3.  Make local changes.
+
+4.  *Push* the local changes to GitHub. This is where the magic happens (or not)!
+
+5.  If all went well, you can refresh the webpage with your GitHub repository and you'll see your local changes.
+
+6.  Make changes online.
+
+7.  *Pull* the online changes to your computer, so your local repository is up to date.
+
+8.  If all went well, then your online changes are available locally as well. It also means you're fully set up with Git & GitHub!
+
+#### Create a test repository on GitHub
+
+-   Log into GitHub.
+
+-   Click the green *New* (repository) button.
+
+-   You can name your repository as `testrepo`.
+
+-   Make sure it's a Public repository.
+
+-   Click *YES*, when asked if you want to initialize the repository with a README.
+
+-   Click the green *Create repository* button.
+
+-   Copy the SSH URL for cloning via the green *Clone or Download* button.
+
+#### Clone the test repository
+
+Go to your terminal and type the following command, substituting the SSH clone URL you copied in the previous step after `git clone`:
+
+```{r eval=FALSE}
+git clone git@github.com:username/testrepo.git
+```
+
+This should create a local copy of your repository as a folder with files contained within.
+
+#### Make local changes
+
+Navigate to the folder of your repository and open the README file. Make an edit, such as *This is a line I'm adding offline to my local copy*. Save the file and close it.
+
+#### Push the local changes to GitHub
+
+Go to your terminal and type the following command(s):
+
+```{r eval=FALSE}
+git add .
+```
+
+This adds all changed files to a 'staging area'.
+
+```{r eval=FALSE}
+git commit -m "insert-understandable-message-here"
+```
+
+Now you're officially 'committing' the changes you made. You want to add a understandable commit message so you have a clear record of your changes.
+
+```{r eval=FALSE}
+git push
+```
+
+With this command, you push the local changes and commit message to your repository online.
+
+This is where errors can pop up if the SSH set-up didn't go as smoothly as expected. Troubleshoot the error messages the best you can!
+
+If everything went smoothly, you can refresh the webpage with GitHub repository and you should see that your changes have been synced.
+
+#### Make changes online
+
+Now we want to go the other way around, open your README file on GitHub and make an edit online. You can do this by:
+
+-   Clicking on the README file and the pencil icon to open edit mode.
+
+-   Add a sentence to your README like *This is a line I'm adding from GitHub.com*.
+
+-   When saving, you'll have to provide a meaningful commit message again.
+
+#### Pull from GitHub
+
+Now go to your terminal and type the following command:
+
+```{r eval=FALSE}
+git pull
+```
+
+If all goes well, you'll see some activity in the terminal which suggests the changes are being downloaded. You can then check out your README file and see whether your online change has been synced.
+
+#### Wrap-Up
+
+Did it work? You did it! You pushed and pulled from GitHub successfully, woohoo!
+
+<!--chapter:end:01-installation-and-troubleshooting.Rmd-->
+
+# Introduction to WORCS {#intro}
+
+
+<!--chapter:end:02-introduction-to-worcs.Rmd-->
+
+# Phase 1: Study Design {#phase-1}
+
+**Notes for cautious researchers**
+
+<!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 upon acceptance.-->Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 13-18 in Phase 3 upon acceptance by the journal.
+
+
+1. <!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->Create a new remote repository on a 'Git' hosting service, such as ["GitHub"](https://github.com)
+    + For inexperienced users, we recommend making this repository "Private", which means only you and selected co-authors can access it. You can set it to "Public" later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository "Public" from the start __only if__ you are an experienced user and know what you are doing.
+    + Copy the repository's SSH link to clipboard; this link should look something like `git@github.com:username/repository.git`
+2. <!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->In Rstudio, click File > New Project > New directory > WORCS Project Template
+    a. Paste the remote Repository address in the textbox. This address should look like `git@github.com:username/repository.git`
+    b. Keep the checkbox for `renv` checked if you want to use dependency management (recommended)
+    c. Select a preregistration template, or add a preregistration later using `add_preregistration()`
+    d. Select a manuscript template, or add a manuscript later using `add_manuscript()`
+    e. Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited)
+3. <!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. This is automated by the `worcs` package.-->A template README.md file will be automatically generated during project creation. Edit this template to explain how users should interact with the project. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users' rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.
+4. <!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration":
+    + Document study plans in a `preregistration.Rmd` file, and optionally, planned analyses in a `.R` file.
+    + In the top-right panel of 'RStudio', select the 'Git' tab
+    + Select the checkbox next to the preregistration file(s)
+    + Click the Commit button.
+    + In the pop-up window, write an informative "Commit message", e.g., "Preregistration"
+    + Click the Commit button below the message dialog
+    + Click the green arrow labeled "Push" to send your commit to the 'Git' remote repository
+    + [Tag this commit as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) on the remote repository, using the label "preregistration". A tagged release helps others retrieve this commit.
+    + Instructions for 'GitHub' [are explained here ](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository)
+<!--        - Go to the 'GitHub' page for your project
+        - Click the label that says "0 releases"
+        - Click the button labeled "Create new release"
+        - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
+        - Click the green button labeled "Publish release"-->
+5. <!--S: Optional: Upload the preregistration to a dedicated preregistration server-->Optional: Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io
+    + In 'RStudio', with the file 'preregistration.Rmd' open, click the "Knit" button above the top left panel
+    + When the PDF is generated, go to one of the recognized preregistration services' websites, create a new preregistration, and upload it as an attachment.
+    + Optional: Generate a DOI for the preregistration through [the OSF](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data) or a service like [Zenodo](https://guides.github.com/activities/citable-code/)
+6. <!--S: Optional: Add study materials to the repository-->Optional: Add study materials to the repository.
+    + Only do this for study materials to which you own the rights, or when the materials' license allows it
+    + You can solicit feedback and outside contributions on a 'Git' remote repository by opening an "Issue" or by accepting "Pull requests"
+
+<!--chapter:end:03-phase-1.Rmd-->
+
+# Phase 2: Writing & Analysis {#phase-2}
+
+7. <!--S: Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable-->Create an executable script documenting the code required to load the raw data into a tabular format, and de-identify human subjects if applicable
+    + Document this preprocessing ("data wrangling") procedure in the `prepare_data.R` file.
+    + This file is intended to document steps that can not or should not be replicated by end users, unless they have access to the raw data file.
+    + These are steps you would run only once, the first time you load data into R.
+    + Make this file as short as possible; only include steps that are absolutely necessary
+8. <!--S: Save the data into a plain-text tabular format like `.csv`. When using open data, commit this file to 'Git'. When using closed data, commit a checksum of the file, and a synthetic copy of the data.-->Save the data using `open_data()` or `closed_data()`
+    + <font colour = "red">__WARNING:__ Once you commit a data file to the 'Git' repository, its record will be retained forever (unless the entire repository is deleted). Assume that pushing data to a 'Git' remote repository cannot be undone. Follow the mantra: "Never commit something you do not intend to share".</font>
+    + When using external data sources (e.g., obtained using an API), it is recommended to store a local copy, to make the project portable and to ensure that end users have access to the same version of the data you used.
+9. <!--S: Write the manuscript using a dynamic document generation format, with code chunks to perform the analyses.-->Write the manuscript in `Manuscript.Rmd`
+    + Use code chunks to perform the analyses. The first code chunk should call `load_data()`
+    + Finish each sentence with one carriage return (enter); separate paragraphs with a double carriage return.
+10. <!--S: Commit every small change to the 'Git' repository-->Regularly Commit your progress to the Git repository; ideally, after completing each small and clearly defined task.
+    + In the top-right panel of 'RStudio', select the 'Git' tab
+    + Select the checkboxes next to all files whose changes you wish to Commit
+    + Click the Commit button.
+    + In the pop-up window, write an informative "Commit message".
+    + Click the Commit button below the message dialog
+    + Click the green arrow labeled "Push" to send your commit to the remote repository
+11. <!--S: Use comprehensive citation-->While writing, cite essential references with one at-symbol, `[@essentialref2020]`, and non-essential references with a double at-symbol, `[@@nonessential2020]`.
+
+<!--chapter:end:04-phase-2.Rmd-->
+
+# Phase 3: Submission & Publication {#phase-3}
+
+12. <!--S: Use dependency management to make the computational environment fully reproducible-->Use dependency management to make the computational environment fully reproducible. When using `renv`, you can save the state of the project library (all packages used) by calling `renv::snapshot()`. This updates the lockfile, `renv.lock`.
+13. <!--S: Optional: Add a WORCS-badge to your project's README file-->Optional: Add a WORCS-badge to your project's README file and complete the optional elements of the WORCS checklist to qualify for a "Perfect" rating. Run the `check_worcs()` function to see whether your project adheres to the WORCS checklist (see `worcs::checklist`)
+    + This adds a WORCS-badge to your 'README.md' file, with a rank of "Fail", "Limited", or "Open".
+    + Reference the WORCS checklist and your paper's score in the paper.
+    + *Optional:* Complete the additional optional items in the WORCS checklist by hand, and get a "Perfect" rating.
+14. <!--S: Make a Private 'Git' remote repository Public-->Make the 'Git' remote repository "Public" if it was set to "Private"
+    + Instructions for 'GitHub': 
+        - Go to your project's repository
+        - Click the "Settings" button
+        - Scroll to the bottom of the page; click "Make public", and follow the on-screen instructions
+15. <!--S: [Create a project page on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project)-->
+[Create a project on the Open Science Framework (OSF)](https://help.osf.io/hc/en-us/articles/360019737594-Create-a-Project) and [connect it to the 'Git' remote repository](https://help.osf.io/hc/en-us/articles/360019929813-Connect-GitHub-to-a-Project).
+    + On the OSF project page, you can select a License for the project. This helps clearly communicate the terms of reusability of your project. Make sure to use the same License you selected during project creation in Step 3.
+16. <!--S: [Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)-->
+[Generate a Digital Object Identifier (DOI) for the OSF project](https://help.osf.io/hc/en-us/articles/360019931013-Create-DOIs)
+    + A DOI is a persistent identifier that can be used to link to your project page.
+    + You may have already created a project page under Step 5 if you preregistered on the OSF
+    + Optionally, you can [generate additional DOIs for specific resources like datasets](https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data).
+    + Alternatively, you can [connect your 'Git' remote repository to Zenodo](https://guides.github.com/activities/citable-code/), instead of the OSF, to create DOIs for the project and specific resources.
+17. <!--S: Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository-->Add an open science statement to the Abstract or Author notes, which links to the 'OSF' project page and/or the 'Git' remote repository. 
+    + Placing this statement in the Abstract or Author note means that readers can find your project even if the paper is published behind a paywall.
+    + The link can be masked for blind review.
+    + The open science statement should indicate which resources are available in the online repository; data, code, materials, study design details, a pre-registration, and/or comprehensive citations. For further guidance, see @aalbersbergMakingScienceTransparent2018. Example:  
+    _In the spirit of open science, an online repository is available at XXX,
+    which contains [the data/a synthetic data file], analysis code, the research
+    materials used, details about the study design, more comprehensive citations,
+    and a tagged release with the preregistration._
+18. <!--S: Render the dynamic document to PDF-->Knit the paper to PDF for submission
+    + In 'RStudio', with the file 'manuscript.Rmd' open, click the "Knit" button above the top left panel
+    + To retain essential citations only, change the front matter of the 'manuscript.Rmd' file:  
+    Change `knit: worcs::cite_all` to `knit: worcs::cite_essential`
+19. <!--S: Optional: [Publish the PDF as a preprint, and add it to the OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)-->Optional: [Publish preprint in a not-for-profit preprint repository such as PsyArchiv, and connect it to your existing OSF project](https://help.osf.io/hc/en-us/articles/360019930533-Upload-a-Preprint)
+    + Check [Sherpa Romeo](http://sherpa.ac.uk/romeo/index.php) to be sure that your intended outlet allows the publication of preprints; many journals do, nowadays - and if they do not, it is worth considering other outlets.
+20. <!--S: Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) of the submitted paper as a release, as in Step 4.-->Submit the paper, and [tag the commit of the submitted paper as a release](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository), as in Step 4.
+
+<!--chapter:end:05-phase-3.Rmd-->
+
+# References {#references}
+
+<!--chapter:end:06-references.Rmd-->
+

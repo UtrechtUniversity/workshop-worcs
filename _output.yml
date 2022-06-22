@@ -1,13 +1,10 @@
-bookdown::gitbook:
+bookdown::bs4_book:
   css: style.css
-  number_sections: false
-  config:
-    toc:
-      before: |
-        <li><a href="./">Writing A Reproducible Manuscript With WORCS</a></li>
-      after: |
-        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
-    download: ["pdf", "epub"]
+  theme: 
+    primary: "#002060"
+  repo: 
+    base: https://github.com/nehamoopen/worcshop-book
+    branch: main
 bookdown::pdf_book:
   includes:
     in_header: preamble.tex
@@ -15,3 +12,11 @@ bookdown::pdf_book:
   citation_package: natbib
   keep_tex: yes
 bookdown::epub_book: default
+
+#  config:
+#    toc:
+#      before: |
+#        <li><a href="./">Writing A Reproducible Manuscript With WORCS</a></li>
+#      after: |
+#        <li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+#    download: ["pdf", "epub"]

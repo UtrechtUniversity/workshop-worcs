@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Phase 1: Study Design | Writing A Reproducible Manuscript In R With WORCS</title>
+<meta name="author" content="Caspar van Lissa, Neha Moopen, Bianca Kramer">
+<meta name="description" content="Notes for cautious researchers Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step...">
+<meta name="generator" content="bookdown 0.27 with bs4_book()">
+<meta property="og:title" content="Phase 1: Study Design | Writing A Reproducible Manuscript In R With WORCS">
+<meta property="og:type" content="book">
+<meta property="og:url" content="https://nehamoopen.github.io/worcshop-book/phase-1-study-design.html">
+<meta property="og:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<meta property="og:description" content="Notes for cautious researchers Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step...">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Phase 1: Study Design | Writing A Reproducible Manuscript In R With WORCS">
+<meta name="twitter:description" content="Notes for cautious researchers Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step...">
+<meta name="twitter:image" content="https://nehamoopen.github.io/worcshop-book/worcs_icon.png">
+<!-- JS --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://kit.fontawesome.com/6ecbd6c532.js" crossorigin="anonymous"></script><script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link href="libs/bootstrap-4.6.0/bootstrap.min.css" rel="stylesheet">
+<script src="libs/bootstrap-4.6.0/bootstrap.bundle.min.js"></script><script src="libs/bs3compat-0.3.1/transition.js"></script><script src="libs/bs3compat-0.3.1/tabs.js"></script><script src="libs/bs3compat-0.3.1/bs3compat.js"></script><link href="libs/bs4_book-1.0.0/bs4_book.css" rel="stylesheet">
+<script src="libs/bs4_book-1.0.0/bs4_book.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- CSS --><style type="text/css">
+    
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  </style>
+<link rel="stylesheet" href="style.css">
+</head>
+<body data-spy="scroll" data-target="#toc">
+
+<div class="container-fluid">
+<div class="row">
+  <header class="col-sm-12 col-lg-3 sidebar sidebar-book"><a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+
+    <div class="d-flex align-items-start justify-content-between">
+      <h1>
+        <a href="index.html" title="">Writing A Reproducible Manuscript In R With WORCS</a>
+      </h1>
+      <button class="btn btn-outline-primary d-lg-none ml-2 mt-1" type="button" data-toggle="collapse" data-target="#main-nav" aria-expanded="true" aria-controls="main-nav"><i class="fas fa-bars"></i><span class="sr-only">Show table of contents</span></button>
+    </div>
+
+    <div id="main-nav" class="collapse-lg">
+      <form role="search">
+        <input id="search" class="form-control" type="search" placeholder="Search" aria-label="Search">
+</form>
+
+      <nav aria-label="Table of contents"><h2>Table of contents</h2>
+        <ul class="book-toc list-unstyled">
+<li><a class="" href="index.html">Welcome!</a></li>
+<li><a class="" href="installation-setup.html">Installation &amp; Setup</a></li>
+<li><a class="" href="data-materials.html">Data &amp; Materials</a></li>
+<li><a class="" href="introduction-to-worcs.html">Introduction to WORCS</a></li>
+<li><a class="" href="the-worcs-workflow.html">The WORCS Workflow</a></li>
+<li><a class="active" href="phase-1-study-design.html">Phase 1: Study Design</a></li>
+<li><a class="" href="phase-2-writing-analysis.html">Phase 2: Writing &amp; Analysis</a></li>
+<li><a class="" href="phase-3-submission-publication.html">Phase 3: Submission &amp; Publication</a></li>
+<li><a class="" href="references.html">References</a></li>
+</ul>
+
+        <div class="book-extra">
+          <p><a id="book-repo" href="https://github.com/nehamoopen/worcshop-book">View book source <i class="fab fa-github"></i></a></p>
+        </div>
+      </nav>
+</div>
+  </header><main class="col-sm-12 col-md-9 col-lg-7" id="content"><div id="phase-1-study-design" class="section level1 unnumbered">
+<h1>Phase 1: Study Design<a class="anchor" aria-label="anchor" href="#phase-1-study-design"><i class="fas fa-link"></i></a>
+</h1>
+<p><strong>Notes for cautious researchers</strong></p>
+<!--S: Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a "Private" repository in Step 1, and completing Steps 14-19 upon acceptance.-->
+<p>Some researchers might want to share their work only once the paper is accepted for publication. In this case, we recommend creating a “Private” repository in Step 1, and completing Steps 13-18 in Phase 3 upon acceptance by the journal.</p>
+<ol style="list-style-type: decimal">
+<li>
+<!--S: Create a (Public or Private) remote repository on a 'Git' hosting service-->
+<p><strong>Create a new remote repository on a ‘Git’ hosting service, such as <a href="https://github.com">“GitHub”</a></strong></p>
+<ul>
+<li>For inexperienced users, we recommend making this repository “Private”, which means only you and selected co-authors can access it. You can set it to “Public” later - for example, when the paper goes to print - and the entire history of the Repository will be public record. We recommend making the repository “Public” from the start <strong>only if</strong> you are an experienced user and know what you are doing.</li>
+<li>Copy the repository’s SSH link to clipboard; this link should look something like <code>git@github.com:username/repository.git</code>
+</li>
+</ul>
+</li>
+<li>
+<!--S: When using R, initialize a new RStudio project using the WORCS template. Otherwise, clone the remote repository to your local project folder.-->
+<p><strong>In Rstudio, click File &gt; New Project &gt; New directory &gt; WORCS Project Template</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li>Paste the remote Repository address in the textbox. This address should look like <code>git@github.com:username/repository.git</code>
+</li>
+<li>Keep the checkbox for <code>renv</code> checked if you want to use dependency management (recommended)</li>
+<li>Select a preregistration template, or add a preregistration later using <code>add_preregistration()</code>
+</li>
+<li>Select a manuscript template, or add a manuscript later using <code>add_manuscript()</code>
+</li>
+<li>Select a license for your project (we recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited)</li>
+</ol>
+</li>
+<li>
+<!--S: Add a README.md file, explaining how users should interact with the project, and a LICENSE to explain users' rights and limit your liability. This is automated by the `worcs` package.-->
+<p>A template README.md file will be automatically generated during project creation. <strong>Edit this template to explain how users should interact with the project</strong>. Based on your selections in the New Project dialog, a LICENSE will also be added to the project, to explain users’ rights and limit your liability. We recommend a CC-BY license, which allows free use of the licensed material as long as the creator is credited.</p>
+</li>
+<li>
+<!--S: Push the local project folder to the remote repository on GitHub-->
+<p><strong>For this workshop, we will already do a round of committing and pushing local changes to GitHub before proceeding further.</strong></p>
+<ol style="list-style-type: lower-alpha">
+<li>Click the “Git” tab in the upper right pane</li>
+<li>Check the ‘Staged’ box for all the files</li>
+<li>If you’re not already in the Git pop-up window, click ‘Commit’</li>
+<li>Type a simple, but meaningful message in the “Commit message” box such as <em>initial commit with WORCS project structure</em>
+</li>
+</ol>
+<ul>
+<li>Click the ‘Push’ button (with the green upwards arrow) to upload your changes to GitHub. Note that you might be prompted to enter your GitHub username and password</li>
+<li>Go to the project repository on GitHub and refresh the page, the local changes should now be visible online. You should see all the files you staged and the commit message you provided will be noted in the history of the repository.</li>
+</ul>
+</li>
+<li>
+<!--S: Optional: Preregister your analysis by committing a plain-text preregistration and [tag this commit](https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository) with the label "preregistration".-->
+<p><strong>Optional:</strong> Preregister your analysis by committing a plain-text preregistration and <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">tag this commit</a> with the label “preregistration”:</p>
+<ul>
+<li>Document study plans in a <code>preregistration.Rmd</code> file, and optionally, planned analyses in a <code>.R</code> file.</li>
+<li>In the top-right panel of ‘RStudio’, select the ‘Git’ tab</li>
+<li>Select the checkbox next to the preregistration file(s)</li>
+<li>Click the Commit button.</li>
+<li>In the pop-up window, write an informative “Commit message”, e.g., “Preregistration”</li>
+<li>Click the Commit button below the message dialog</li>
+<li>Click the green arrow labeled “Push” to send your commit to the ‘Git’ remote repository</li>
+<li>
+<a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">Tag this commit as a release</a> on the remote repository, using the label “preregistration”. A tagged release helps others retrieve this commit.</li>
+<li>Instructions for ‘GitHub’ <a href="https://docs.github.com/en/free-pro-team@latest/github/administering-a-repository/managing-releases-in-a-repository">are explained here</a>
+<!--        - Go to the 'GitHub' page for your project
+     - Click the label that says "0 releases"
+     - Click the button labeled "Create new release"
+     - In the textbox labeled "Tag version" and the textbox "Release title", write: "Preregistration"
+     - Click the green button labeled "Publish release"-->
+</li>
+</ul>
+</li>
+<li>
+<!--S: Optional: Upload the preregistration to a dedicated preregistration server-->
+<p><strong>Optional:</strong> Render the preregistration to PDF, and upload it as an attachment to a dedicated preregistration server like AsPredicted.org or OSF.io</p>
+<ul>
+<li>In ‘RStudio’, with the file ‘preregistration.Rmd’ open, click the “Knit” button above the top left panel</li>
+<li>When the PDF is generated, go to one of the recognized preregistration services’ websites, create a new preregistration, and upload it as an attachment.</li>
+<li>Optional: Generate a DOI for the preregistration through <a href="https://help.osf.io/hc/en-us/articles/360019931173-Sharing-data">the OSF</a> or a service like <a href="https://guides.github.com/activities/citable-code/">Zenodo</a>
+</li>
+</ul>
+</li>
+<li>
+<!--S: Optional: Add study materials to the repository-->
+<p><strong>Optional:</strong> Add study materials to the repository.</p>
+<ul>
+<li>Only do this for study materials to which you own the rights, or when the materials’ license allows it</li>
+<li>You can solicit feedback and outside contributions on a ‘Git’ remote repository by opening an “Issue” or by accepting “Pull requests”</li>
+</ul>
+</li>
+</ol>
+</div>
+  <div class="chapter-nav">
+<div class="prev"><a href="the-worcs-workflow.html">The WORCS Workflow</a></div>
+<div class="next"><a href="phase-2-writing-analysis.html">Phase 2: Writing &amp; Analysis</a></div>
+</div></main><div class="col-md-3 col-lg-2 d-none d-md-block sidebar sidebar-chapter">
+    <nav id="toc" data-toggle="toc" aria-label="On this page"><h2>On this page</h2>
+      <ul class="nav navbar-nav"><li><a class="nav-link" href="#phase-1-study-design">Phase 1: Study Design</a></li></ul>
+
+      <div class="book-extra">
+        <ul class="list-unstyled">
+<li><a id="book-source" href="https://github.com/nehamoopen/worcshop-book/blob/main/05-phase-1.Rmd">View source <i class="fab fa-github"></i></a></li>
+          <li><a id="book-edit" href="https://github.com/nehamoopen/worcshop-book/edit/main/05-phase-1.Rmd">Edit this page <i class="fab fa-github"></i></a></li>
+        </ul>
+</div>
+    </nav>
+</div>
+
+</div>
+</div> <!-- .container -->
+
+<footer class="bg-primary text-light mt-5"><div class="container"><div class="row">
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>"<strong>Writing A Reproducible Manuscript In R With WORCS</strong>" was written by Caspar van Lissa, Neha Moopen, Bianca Kramer. It was last built on 2022-06-22.</p>
+  </div>
+
+  <div class="col-12 col-md-6 mt-3">
+    <p>This book was built by the <a class="text-light" href="https://bookdown.org">bookdown</a> R package.</p>
+  </div>
+
+</div></div>
+</footer>
+</body>
+</html>
